@@ -3,11 +3,11 @@ import axios from "axios"
 class apiRequest {
 
     constructor(){
-        this.url = "https://api.spacexdata.com/v3/ships"
+        this.url = "https://api.spacexdata.com/v3"
     }
 
     // getting rockets
-    fetchRockets = () => axios.get(this.url)
+    getData = (src) => axios.get(`${this.url}/${src}`)
 }
 
 export default apiRequest

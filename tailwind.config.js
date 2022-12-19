@@ -5,7 +5,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ['Rajdhani', 'sans-serif']
+      sans: ['Archivo', 'sans-serif']
     },
     extend: {},
   },
