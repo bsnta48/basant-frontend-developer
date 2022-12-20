@@ -3,11 +3,15 @@ import { ActionTypes } from "../action-types"
 const initialState = {
     all_rockets: [],
     searched_rockets: [],
-    isFetching: false
+    isFetching: false,
+    banners: []
 }
 
 const rocketReducer = (state = initialState, { type, payload }) => {
     switch (type) {
+
+        case ActionTypes.SET_BANNER:
+            return { ...state, banners: payload }
 
         case ActionTypes.SET_ROCKETS:
             return { ...state, all_rockets: payload }

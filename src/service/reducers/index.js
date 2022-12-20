@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
 import rocketReducer from "./rocketReducer";
-import bannerReducer from "./bannerReducer";
+import capsulesReducer from "./capsulesReducer"
 
-export default combineReducers({ rocketReducer, bannerReducer })
+export default combineReducers({ rocketReducer, capsulesReducer })

@@ -6,6 +6,12 @@ export const setBanner = (data) => {
         payload: data
     }
 }
+export const setCapsules = (data) => {
+    return {
+        type: ActionTypes.SET_CAPSULES,
+        payload: data
+    }
+}
 
 export const setRockets = (data) => {
     return {
