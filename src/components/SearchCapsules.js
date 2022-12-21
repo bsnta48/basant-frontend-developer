@@ -1,34 +1,67 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import apiRequest from '../api';
+import { setCapsules, setSearch } from '../service/actions';
 
-const SearchCapsules = () => {
+const SearchCapsules = (props) => {
+
+    const { capsulesReducer: { capsules, searchQuery } } = useSelector(state => state);
+    const dispatch = useDispatch();
+    const [state, setState] = useState({});
+
+    // creating object for api request
+    const api = new apiRequest();
+
+    // handle search data
+    const handleSearch = e => {
+        const key = e.target.name
+        const value = e.target.value
+        dispatch(setSearch({ ...searchQuery, [key]: value }))
+        dispatch(setCapsules({ currentPage: 1 }))
+    }
+
+    // fetching data for the filter options
+    const fetchData = async () => {
+        const { data } = await api.getData('capsules')
+        const types = data.map(t => t.type)
+        const status = data.map(s => s.status)
+        const launch = data.map(l => l.original_launch)
+        setState({
+            type: new Set(types),
+            status: new Set(status),
+            original_launch: new Set(launch),
+        })
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
     return (
-        <form className='flex flex-wrap mb-20 gap-4'>
-            <label className='block w-full md:w-72'>
-                <select className='w-full text-lg py-3 px-4 border border-black'>
-                    <option value={{}}>Status</option>
-                    <option value={{}}>Option one</option>
-                    <option value={{}}>Option one</option>
-                    <option value={{}}>Option one</option>
-                </select>
-            </label>
-            <label className='block w-full md:w-72'>
-                <select className='w-full text-lg py-3 px-4 border border-black'>
-                    <option value={{}}>Type</option>
-                    <option value={{}}>Option one</option>
-                    <option value={{}}>Option one</option>
-                    <option value={{}}>Option one</option>
-                </select>
-            </label>
-            <label className='block w-full md:w-72'>
-                <select className='w-full text-lg py-3 px-4 border border-black'>
-                    <option value={{}}>Original Launch</option>
-                    <option value={{}}>Option one</option>
-                    <option value={{}}>Option one</option>
-                    <option value={{}}>Option one</option>
-                </select>
-            </label>
-            <button type='submit' className='text-lg leading-none py-3 px-8 bg-black text-white border border-black transition-all hover:bg-transparent hover:text-black'>Search</button>
-        </form>
+        <div {...props}>
+            {Object.entries(state)?.map((key, i) => {
+                const [name, values] = key;
+                return <label key={i}>
+                    <select
+                        name={name}
+                        value={searchQuery[name]}
+                        onChange={handleSearch}
+                        className='w-full h-38 p-2 border border-black'
+                    >
+                        <option value=''>{name}</option>
+                        {
+                            [...values]?.map((_value, i) => {
+                                return <option key={i} value={_value}>
+                                    {
+                                        name === 'original_launch' && new Date(_value).toDateString() || _value
+                                    }
+                                </option>
+                            })
+                        }
+                    </select>
+                </label>
+            })}
+        </div>
     )
 }
 

@@ -33,3 +33,17 @@ export const setLoading = (data) => {
         payload: data
     }
 }
+
+export const setPageNumber = (page) => {
+    return {
+        type: ActionTypes.SET_PAGE_NUMBER,
+        payload: page
+    }
+}
+
+export const setSearch = (query) => {
+    return {
+        type: ActionTypes.SET_SEARCH,
+        payload: query
+    }
+}

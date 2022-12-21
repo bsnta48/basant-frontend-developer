@@ -7,7 +7,11 @@ module.exports = {
     fontFamily: {
       sans: ['Archivo', 'sans-serif']
     },
-    extend: {},
+    extend: {
+      spacing: {
+        '38': '38px',
+      }
+    }
   },
   plugins: [],
 }
