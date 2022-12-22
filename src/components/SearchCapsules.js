@@ -22,15 +22,19 @@ const SearchCapsules = (props) => {
 
     // fetching data for the filter options
     const fetchData = async () => {
-        const { data } = await api.getData('capsules')
-        const types = data.map(t => t.type)
-        const status = data.map(s => s.status)
-        const launch = data.map(l => l.original_launch)
-        setState({
-            type: new Set(types),
-            status: new Set(status),
-            original_launch: new Set(launch),
-        })
+        try {
+            const { data } = await api.getData('capsules')
+            const types = data.map(t => t.type)
+            const status = data.map(s => s.status)
+            const launch = data.map(l => l.original_launch)
+            setState({
+                type: new Set(types),
+                status: new Set(status),
+                original_launch: new Set(launch),
+            })
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
     useEffect(() => {

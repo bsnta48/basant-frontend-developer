@@ -1,6 +1,7 @@
 import { ActionTypes } from "../action-types"
 
 const initialState = {
+    isError: false,
     isFetching: false,
     capsules: [],
     currentPage: 1,

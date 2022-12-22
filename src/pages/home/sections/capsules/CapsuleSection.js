@@ -15,7 +15,8 @@ const CapsuleSection = () => {
         capsules,
         currentPage,
         capsPerPage,
-        searchQuery
+        searchQuery,
+        isError
     } = capsulesReducer
 
     // creating object for api request
@@ -28,14 +29,21 @@ const CapsuleSection = () => {
     const searchParams = new URLSearchParams(searchQuery).toString();
 
     const fetchData = async () => {
-        dispatch(setCapsules({
-            isFetching: true
-        }))
-        const response = await api.getData(`capsules/?${apiQuery}&${searchParams}`)
-        dispatch(setCapsules({
-            capsules: response.data,
-            isFetching: false
-        }))
+        try {
+            dispatch(setCapsules({
+                isFetching: true
+            }))
+            const response = await api.getData(`capsules/?${apiQuery}&${searchParams}`)
+            dispatch(setCapsules({
+                capsules: response.data,
+                isFetching: false
+            }))
+        } catch (error) {
+            dispatch(setCapsules({
+                isError: error.message,
+                isFetching: false
+            }))
+        }
     }
 
     useEffect(() => {
@@ -51,7 +59,7 @@ const CapsuleSection = () => {
                     <SearchCapsules className='inline-flex flex-wrap gap-2 lg:ml-auto' />
                 </div>
                 <hr className='my-8 border-t border-gray-200' />
-                <Capsules capsules={capsules} loading={isFetching} />
+                <Capsules capsules={capsules} loading={isFetching} error={isError} />
                 <hr className='my-8 border-t border-gray-200' />
                 <Pagination className='mt-10' />
             </Container>

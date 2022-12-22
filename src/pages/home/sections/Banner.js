@@ -13,8 +13,12 @@ const Banner = () => {
     const api = new apiRequest();
 
     const fetchData = async () => {
-        const response = await api.getData('rockets/falcon9')
-        dispatch(setBanner(response.data))
+        try {
+            const response = await api.getData('rockets/falcon9')
+            dispatch(setBanner(response.data))
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
     useEffect(() => {

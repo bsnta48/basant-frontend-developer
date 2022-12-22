@@ -1,7 +1,6 @@
 import React from 'react'
-import { Navbar } from './components'
-import { Home, DetailsPage } from "./pages"
 import Container from "./container"
+import { Home } from "./pages"
 
 const App = () => {
 

@@ -1,6 +1,7 @@
 import { ActionTypes } from "../action-types"
 
 const initialState = {
+    isError: false,
     all_rockets: [],
     searched_rockets: [],
     isFetching: false,

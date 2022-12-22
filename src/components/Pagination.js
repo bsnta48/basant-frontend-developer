@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { setCapsules, setPageNumber } from '../service/actions';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPageNumber } from '../service/actions';
 
 const Pagination = (props) => {
 
@@ -9,7 +9,7 @@ const Pagination = (props) => {
         currentPage,
         totCaps,
         capsPerPage,
-        searchQuery
+        isError
     } } = useSelector(state => state);
     const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ const Pagination = (props) => {
     }
 
     // if number of pages is 1
-    if (nbPages == 1) {
+    if (nbPages == 1 || capsules.length < 1 || isError) {
         return;
     }
 
