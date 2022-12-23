@@ -23,7 +23,7 @@ const Pagination = (props) => {
     }
 
     // if number of pages is 1
-    if (nbPages == 1 || capsules.length < 1 || isError) {
+    if (nbPages == 1 || capsules.length < 1 || isError || (currentPage == 1 && capsules.length <= capsPerPage)) {
         return;
     }
 

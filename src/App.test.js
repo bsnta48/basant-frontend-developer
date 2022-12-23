@@ -1,9 +1,19 @@
-import '@testing-library/jest-dom/extend-expect';
-import { render, screen } from "@testing-library/react";
-import { Home } from "./pages";
-import React from "react";
+/**
+ * @jest-environment jsdom
+ */
+import "@testing-library/jest-dom"
+import { render, screen } from "@testing-library/react"
+import Test from "./pages/home/test"
+import { sum } from "./sum"
+import React from "react"
 
-test("render home component", () => {
-    const component = render(<Home />)
-    console.log(component)
+test("sum will be 3", () => {
+    expect(sum(1, 2)).toBe(3)
+})
+
+test("render text shoule test", () => {
+    const test = render(<Test />)
+    console.log(test)
+    // const todoElement = screen.getByText("test");
+    // expect(todoElement).toBeInTheDocument()
 })

@@ -5,11 +5,11 @@ const Capsules = ({ capsules, loading, error }) => {
     return (
         <>
             {
-                error && <p className='text-center text-xl text-red-500'>!{error}</p> || capsules.length < 1 && !loading && <p className='text-center text-xl text-red-500'>Oops! Could not find any Capsules.</p>
+                capsules.length < 1 && !loading && <p className='text-center text-xl text-red-500'>Oops! Could not find any Capsules.</p>
             }
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8'>
                 {
-                    !loading && capsules?.map((capsule, key) => {
+                    !loading && !error && capsules?.map((capsule, key) => {
                         const { missions, details, original_launch, type, status } = capsule;
                         return <div key={key} className='border-l-2 border-sky-900 pl-4'>
                             <h5 className='mb-2 text-2xl font-bold'>{missions?.[0]?.name}</h5>
