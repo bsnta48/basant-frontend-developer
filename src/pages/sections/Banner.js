@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import apiRequest from '../../../api';
-import { setBanner } from '../../../service/actions';
-import { Container } from "../../../components";
+import apiRequest from '../../api';
+import { setBanner } from '../../service/actions';
+import { Container } from "../../components";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
 import 'swiper/css';
@@ -34,7 +34,6 @@ const Banner = () => {
 
     return (
         <section className='banner-section relative flex items-center'>
-            "Main Banner"
             <Swiper
                 slidesPerView={1}
                 autoplay
@@ -62,12 +61,12 @@ const Banner = () => {
                         </SwiperSlide>
                     })
                 }
-                <button ref={navigationPrevRef} role='slide button' aria-label='previous slide' className='hidden lg:block leading-tight inline-block p-2 text-white border border-white hover:bg-white hover:text-black transition-all cursor-pointer absolute left-2 top-1/2 z-20 -translate-y-1/2' >
+                <button ref={navigationPrevRef} role='slide button' aria-label='previous slide' className='hidden lg:inline-block leading-tight p-2 text-white border border-white hover:bg-white hover:text-black transition-all cursor-pointer absolute left-2 top-1/2 z-20 -translate-y-1/2' >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
                 </button>
-                <button ref={navigationNextRef} role='slide button' aria-label='next slide' className='hidden lg:block leading-tight inline-block p-2 text-white border border-white hover:bg-white hover:text-black transition-all cursor-pointer absolute right-2 top-1/2 z-20 -translate-y-1/2' >
+                <button ref={navigationNextRef} role='slide button' aria-label='next slide' className='hidden lg:inline-block leading-tight p-2 text-white border border-white hover:bg-white hover:text-black transition-all cursor-pointer absolute right-2 top-1/2 z-20 -translate-y-1/2' >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>

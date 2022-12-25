@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { Container, Pagination, SearchCapsules } from '../../../../components'
-import apiRequest from '../../../../api';
+import { Container, Pagination, SearchCapsules } from '../../../components'
+import apiRequest from '../../../api';
 import { useSelector, useDispatch } from 'react-redux'
-import { setCapsules } from '../../../../service/actions';
+import { setCapsules } from '../../../service/actions';
 import Capsules from './Capsules';
 
 const CapsuleSection = () => {
